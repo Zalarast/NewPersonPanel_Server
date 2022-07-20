@@ -3,8 +3,14 @@ import { Sequelize } from "sequelize/types";
 export async function init (sequelize: Sequelize) {
   try {
     await sequelize.authenticate();
-    console.log("Connection has been established successfully.");
+    console.log("Подключение к БД - успешно");
+    try {
+      await sequelize.sync()
+      console.log("Синхронизация моделей - успешно")
+    } catch (error) {
+      console.error("При синхронизации моделей произошла ошибка:", error)
+    }
   } catch (error) {
-    console.error("Unable to connect to the database:", error);
+    console.error("При подключении к БД произошла ошибка:", error);
   }
 };
