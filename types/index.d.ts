@@ -1,6 +1,7 @@
 export interface AuthBody {
     login: string;
     password: string;
+    token: string;
 }
 
 export interface UsersModel {
