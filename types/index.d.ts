@@ -1,7 +1,8 @@
 export interface AuthBody {
-    login: string;
-    password: string;
-    token: string;
+    login?: string;
+    password?: string;
+    token?: string;
+    reauth: boolean;
 }
 
 export interface UsersModel {
