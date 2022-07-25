@@ -6,6 +6,7 @@ export async function models (sequelize: Sequelize) {
         id: { type: DataTypes.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true },
         login: { type: DataTypes.STRING },
         password: { type: DataTypes.STRING },
+        avatar: { type: DataTypes.STRING },
         token: { type: DataTypes.STRING }
     })
 }
