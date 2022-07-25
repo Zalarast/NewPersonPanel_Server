@@ -4,7 +4,11 @@ import { TokenGenerator } from "ts-token-generator";
 export async function auth(
   sequelize: Sequelize,
   data: { login?: string; password?: string; token?: string; reauth: boolean }
-): Promise<{ result: boolean; token?: string }> {
+): Promise<{
+  result: boolean;
+  token?: string;
+  userInfo?: { login: string; avatar: string | null };
+}> {
   if (data) {
     const where: { login?: string; password?: string; token?: string } = {};
     data.login && (where.login = data.login);
@@ -23,7 +27,14 @@ export async function auth(
           console.error("При записи токена в БД произошла ошибка:", error);
         }
       }
-      return { result: true, token: userData.get("token") as string };
+      return {
+        result: true,
+        token: userData.get("token") as string,
+        userInfo: {
+          avatar: userData.get("avatar") as string,
+          login: userData.get("login") as string,
+        },
+      };
     } else return { result: false };
   } else return { result: false };
 }
