@@ -11,3 +11,7 @@ export interface UsersModel {
     password: string;
     token: string;
 }
+
+export interface InfoBody {
+    token: string;
+}
