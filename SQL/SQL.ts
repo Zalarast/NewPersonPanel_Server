@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
-import { AuthBody } from "../types";
-import { init, auth } from "./functions";
+import { AuthBody, InfoBody } from "../types";
+import { init, auth, info } from "./functions";
 import { models } from "./models";
 
 const sequelize = new Sequelize({
@@ -15,4 +15,8 @@ export async function initDB() {
 
 export async function authUser(userData: AuthBody) {
     return await auth(sequelize, userData);
+}
+
+export async function getInfo(infoData: InfoBody) {
+    return await info(sequelize, infoData)
 }
